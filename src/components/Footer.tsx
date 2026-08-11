@@ -216,35 +216,19 @@ export const DownloadModal: React.FC<{ isOpen: boolean; onClose: () => void; det
               <Download size={16} color="var(--cyan-primary)" />
             </a>
 
-            <div style={{ display: 'flex', gap: '8px' }}>
-              <a
-                href={versionInfo.downloadUrlDeb}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary"
-                style={{ flex: 1, justifyContent: 'space-between', borderColor: detectedOS.includes('Linux') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
-              >
-                <div>
-                  <strong>🐧 Linux (.deb)</strong>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Debian / Ubuntu</div>
-                </div>
-                <Download size={15} color="var(--cyan-primary)" />
-              </a>
-
-              <a
-                href={versionInfo.downloadUrlAppImage}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary"
-                style={{ flex: 1, justifyContent: 'space-between', borderColor: 'var(--border-glass)' }}
-              >
-                <div>
-                  <strong>🐧 AppImage</strong>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Standalone</div>
-                </div>
-                <Download size={15} color="var(--cyan-primary)" />
-              </a>
-            </div>
+            <a
+              href={versionInfo.downloadUrlDeb}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+              style={{ justifyContent: 'space-between', borderColor: detectedOS.includes('Linux') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
+            >
+              <div>
+                <strong>🐧 Linux Installer (.deb)</strong>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)' }}>Debian / Ubuntu / Linux Mint</div>
+              </div>
+              <Download size={16} color="var(--cyan-primary)" />
+            </a>
           </div>
 
           <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', textAlign: 'center' }}>

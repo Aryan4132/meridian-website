@@ -34,23 +34,7 @@ export const App: React.FC = () => {
   }, []);
 
   const handleDirectDownload = () => {
-    let downloadUrl = versionInfo.downloadUrlExe;
-
-    if (detectedOS === 'macOS') {
-      downloadUrl = versionInfo.downloadUrlDmg;
-    } else if (detectedOS === 'Linux') {
-      downloadUrl = versionInfo.downloadUrlDeb;
-    }
-
-    // Trigger direct file download for detected OS
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.download = '';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    // Open modal to let user choose alternative format (.msi, .AppImage, .dmg)
+    // Open modal so user chooses binary format (.exe, .msi, .dmg, .deb)
     setDownloadModalOpen(true);
   };
 
