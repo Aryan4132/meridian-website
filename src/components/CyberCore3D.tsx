@@ -286,52 +286,6 @@ export const CyberCore3D: React.FC<CyberCore3DProps> = ({
         cursor: 'pointer',
       }}
     >
-      {/* Floating 3D Coordinate Callout Badge 1 */}
-      {hudPins[0]?.visible && (
-        <div
-          style={{
-            position: 'absolute',
-            left: `${hudPins[0].x}px`,
-            top: `${hudPins[0].y}px`,
-            transform: 'translate(-50%, -100%)',
-            pointerEvents: 'none',
-            background: 'rgba(5, 5, 8, 0.85)',
-            border: `1px solid ${accentColor}`,
-            color: accentColor,
-            padding: '3px 8px',
-            borderRadius: '6px',
-            fontSize: '0.7rem',
-            fontFamily: 'monospace',
-            boxShadow: `0 0 12px ${accentColor}44`,
-            transition: 'border 0.3s ease',
-          }}
-        >
-          ⚡ {speedText}
-        </div>
-      )}
-
-      {/* Floating 3D Coordinate Callout Badge 2 */}
-      {hudPins[1]?.visible && (
-        <div
-          style={{
-            position: 'absolute',
-            left: `${hudPins[1].x}px`,
-            top: `${hudPins[1].y}px`,
-            transform: 'translate(-50%, 0)',
-            pointerEvents: 'none',
-            background: 'rgba(5, 5, 8, 0.85)',
-            border: `1px solid ${accentColor}`,
-            color: '#FFFFFF',
-            padding: '3px 8px',
-            borderRadius: '6px',
-            fontSize: '0.7rem',
-            fontFamily: 'monospace',
-            boxShadow: '0 0 12px rgba(255, 255, 255, 0.2)',
-          }}
-        >
-          💾 VRAM: {vramText}
-        </div>
-      )}
     </div>
   );
 };
