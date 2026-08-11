@@ -155,7 +155,7 @@ export const Hero: React.FC<HeroProps> = ({ detectedOS, isMobile, onDownloadClic
           >
             <button onClick={onDownloadClick} className="btn-primary" style={{ padding: '16px 32px', fontSize: '1.05rem' }}>
               <Download size={20} />
-              <span>Download Desktop App ({detectedOS})</span>
+              <span>Download Desktop App</span>
             </button>
 
             <a
@@ -187,73 +187,6 @@ export const Hero: React.FC<HeroProps> = ({ detectedOS, isMobile, onDownloadClic
               💻 <strong>Desktop OS Required:</strong> Meridian-X runs exclusively on Windows, macOS, and Linux. Star on GitHub to setup on your computer!
             </div>
           )}
-
-          {/* Interactive Multi-Tab Terminal Installer */}
-          <div
-            style={{
-              display: 'inline-flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '8px',
-              background: 'rgba(12, 12, 16, 0.95)',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              borderRadius: '16px',
-              padding: '12px 18px',
-              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.8)',
-              maxWidth: '680px',
-              width: '100%'
-            }}
-          >
-            {/* Tab Selector */}
-            <div style={{ display: 'flex', gap: '6px', width: '100%', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', paddingBottom: '8px' }}>
-              {(['powershell', 'ollama', 'batch', 'winget'] as const).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  style={{
-                    background: activeTab === tab ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-                    border: '1px solid',
-                    borderColor: activeTab === tab ? 'rgba(255, 255, 255, 0.25)' : 'transparent',
-                    color: activeTab === tab ? '#FFFFFF' : 'var(--text-dim)',
-                    borderRadius: '6px',
-                    padding: '4px 10px',
-                    fontSize: '0.75rem',
-                    fontFamily: 'var(--font-code)',
-                    cursor: 'pointer',
-                    textTransform: 'uppercase',
-                    fontWeight: 600,
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-
-            {/* Terminal Command Line */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', gap: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontFamily: 'var(--font-code)', fontSize: '0.82rem', color: '#E4E4E7', overflowX: 'auto' }}>
-                <Terminal size={14} color="#FAFAFA" />
-                <span>{installCmds[activeTab]}</span>
-              </div>
-
-              <button
-                onClick={handleCopy}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: copied ? '#10B981' : 'var(--text-muted)',
-                  cursor: 'pointer',
-                  padding: '4px',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}
-                title="Copy shell install command"
-              >
-                {copied ? <Check size={16} /> : <Copy size={16} />}
-              </button>
-            </div>
-          </div>
 
           {/* Quick Benchmark Highlights Row */}
           <div
