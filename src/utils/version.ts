@@ -5,6 +5,9 @@ export interface VersionInfo {
   tagName: string;
   downloadUrlExe: string;
   downloadUrlMsi: string;
+  downloadUrlDmg: string;
+  downloadUrlDeb: string;
+  downloadUrlAppImage: string;
   releaseNotesUrl: string;
   publishedAt: string;
   isLive: boolean;
@@ -16,6 +19,9 @@ const DEFAULT_VERSION: VersionInfo = {
   tagName: 'v0.4.0',
   downloadUrlExe: 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_x64-setup.exe',
   downloadUrlMsi: 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_x64_en-US.msi',
+  downloadUrlDmg: 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_aarch64.dmg',
+  downloadUrlDeb: 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_amd64.deb',
+  downloadUrlAppImage: 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_amd64.AppImage',
   releaseNotesUrl: 'https://github.com/Aryan4132/Meridian-X/releases/latest',
   publishedAt: new Date().toISOString(),
   isLive: false,
@@ -47,12 +53,22 @@ export function useMeridianVersion(): VersionInfo {
 
           let exeUrl = DEFAULT_VERSION.downloadUrlExe;
           let msiUrl = DEFAULT_VERSION.downloadUrlMsi;
+          let dmgUrl = DEFAULT_VERSION.downloadUrlDmg;
+          let debUrl = DEFAULT_VERSION.downloadUrlDeb;
+          let appImageUrl = DEFAULT_VERSION.downloadUrlAppImage;
 
           if (Array.isArray(data.assets)) {
             const exeAsset = data.assets.find((a: any) => a.name?.endsWith('.exe'));
             const msiAsset = data.assets.find((a: any) => a.name?.endsWith('.msi'));
+            const dmgAsset = data.assets.find((a: any) => a.name?.endsWith('.dmg'));
+            const debAsset = data.assets.find((a: any) => a.name?.endsWith('.deb'));
+            const appImageAsset = data.assets.find((a: any) => a.name?.endsWith('.AppImage'));
+
             if (exeAsset?.browser_download_url) exeUrl = exeAsset.browser_download_url;
             if (msiAsset?.browser_download_url) msiUrl = msiAsset.browser_download_url;
+            if (dmgAsset?.browser_download_url) dmgUrl = dmgAsset.browser_download_url;
+            if (debAsset?.browser_download_url) debUrl = debAsset.browser_download_url;
+            if (appImageAsset?.browser_download_url) appImageUrl = appImageAsset.browser_download_url;
           }
 
           const liveInfo: VersionInfo = {
@@ -60,6 +76,9 @@ export function useMeridianVersion(): VersionInfo {
             tagName: tag,
             downloadUrlExe: exeUrl,
             downloadUrlMsi: msiUrl,
+            downloadUrlDmg: dmgUrl,
+            downloadUrlDeb: debUrl,
+            downloadUrlAppImage: appImageUrl,
             releaseNotesUrl: data.html_url || DEFAULT_VERSION.releaseNotesUrl,
             publishedAt: data.published_at || DEFAULT_VERSION.publishedAt,
             isLive: true,

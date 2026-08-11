@@ -9,11 +9,13 @@ import { McpMarketplace } from './components/McpMarketplace';
 import { ComparisonMatrix } from './components/ComparisonMatrix';
 import { FaqSection } from './components/FaqSection';
 import { Footer, DownloadModal } from './components/Footer';
+import { useMeridianVersion } from './utils/version';
 
 export const App: React.FC = () => {
   const [detectedOS, setDetectedOS] = useState<string>('Windows');
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [downloadModalOpen, setDownloadModalOpen] = useState<boolean>(false);
+  const versionInfo = useMeridianVersion();
 
   useEffect(() => {
     const ua = navigator.userAgent;
@@ -32,12 +34,12 @@ export const App: React.FC = () => {
   }, []);
 
   const handleDirectDownload = () => {
-    let downloadUrl = 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_x64-setup.exe';
+    let downloadUrl = versionInfo.downloadUrlExe;
 
     if (detectedOS === 'macOS') {
-      downloadUrl = 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_aarch64.dmg';
+      downloadUrl = versionInfo.downloadUrlDmg;
     } else if (detectedOS === 'Linux') {
-      downloadUrl = 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_amd64.deb';
+      downloadUrl = versionInfo.downloadUrlDeb;
     }
 
     // Trigger direct file download for detected OS

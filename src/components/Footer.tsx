@@ -203,7 +203,7 @@ export const DownloadModal: React.FC<{ isOpen: boolean; onClose: () => void; det
             </div>
 
             <a
-              href={`https://github.com/Aryan4132/Meridian-X/releases/download/${versionInfo.tagName}/meridian-x_${versionInfo.version}_aarch64.dmg`}
+              href={versionInfo.downloadUrlDmg}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"
@@ -218,7 +218,7 @@ export const DownloadModal: React.FC<{ isOpen: boolean; onClose: () => void; det
 
             <div style={{ display: 'flex', gap: '8px' }}>
               <a
-                href={`https://github.com/Aryan4132/Meridian-X/releases/download/${versionInfo.tagName}/meridian-x_${versionInfo.version}_amd64.deb`}
+                href={versionInfo.downloadUrlDeb}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary"
@@ -232,7 +232,7 @@ export const DownloadModal: React.FC<{ isOpen: boolean; onClose: () => void; det
               </a>
 
               <a
-                href={`https://github.com/Aryan4132/Meridian-X/releases/download/${versionInfo.tagName}/meridian-x_${versionInfo.version}_amd64.AppImage`}
+                href={versionInfo.downloadUrlAppImage}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary"
