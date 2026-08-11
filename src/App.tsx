@@ -32,10 +32,15 @@ export const App: React.FC = () => {
   }, []);
 
   const handleDirectDownload = () => {
-    // Direct 1-click download for latest release installer
-    const downloadUrl = 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_x64-setup.exe';
-    
-    // Trigger direct file download
+    let downloadUrl = 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_x64-setup.exe';
+
+    if (detectedOS === 'macOS') {
+      downloadUrl = 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_aarch64.dmg';
+    } else if (detectedOS === 'Linux') {
+      downloadUrl = 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_amd64.deb';
+    }
+
+    // Trigger direct file download for detected OS
     const link = document.createElement('a');
     link.href = downloadUrl;
     link.download = '';
@@ -43,7 +48,7 @@ export const App: React.FC = () => {
     link.click();
     document.body.removeChild(link);
 
-    // Also open modal for OS selection option
+    // Open modal to let user choose alternative format (.msi, .AppImage, .dmg)
     setDownloadModalOpen(true);
   };
 

@@ -172,47 +172,79 @@ export const DownloadModal: React.FC<{ isOpen: boolean; onClose: () => void; det
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
-            <a
-              href={versionInfo.downloadUrlExe}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
-              style={{ justifyContent: 'space-between', borderColor: detectedOS.includes('Windows') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
-            >
-              <div>
-                <strong>🪟 Windows Installer (NSIS .exe / MSI)</strong>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)' }}>meridian-x_0.4.0_x64-setup.exe</div>
-              </div>
-              <Download size={16} color="var(--cyan-primary)" />
-            </a>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <a
+                href={versionInfo.downloadUrlExe}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                style={{ flex: 1, justifyContent: 'space-between', borderColor: detectedOS.includes('Windows') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
+              >
+                <div>
+                  <strong>🪟 Windows (.exe)</strong>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>x64 Setup</div>
+                </div>
+                <Download size={15} color="var(--cyan-primary)" />
+              </a>
+
+              <a
+                href={versionInfo.downloadUrlMsi}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                style={{ flex: 1, justifyContent: 'space-between', borderColor: 'var(--border-glass)' }}
+              >
+                <div>
+                  <strong>🪟 Windows (.msi)</strong>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>MSI Package</div>
+                </div>
+                <Download size={15} color="var(--cyan-primary)" />
+              </a>
+            </div>
 
             <a
-              href="https://github.com/Aryan4132/Meridian-X/releases"
+              href={`https://github.com/Aryan4132/Meridian-X/releases/download/${versionInfo.tagName}/meridian-x_${versionInfo.version}_aarch64.dmg`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"
               style={{ justifyContent: 'space-between', borderColor: detectedOS.includes('macOS') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
             >
               <div>
-                <strong>🍎 macOS Apple Silicon & Intel (.dmg)</strong>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)' }}>macOS 12+ Monterey / Sonoma / Sequoia</div>
+                <strong>🍎 macOS Installer (.dmg)</strong>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)' }}>Universal / Apple Silicon & Intel</div>
               </div>
               <Download size={16} color="var(--cyan-primary)" />
             </a>
 
-            <a
-              href="https://github.com/Aryan4132/Meridian-X/releases"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
-              style={{ justifyContent: 'space-between', borderColor: detectedOS.includes('Linux') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
-            >
-              <div>
-                <strong>🐧 Linux Package (.AppImage / .deb)</strong>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)' }}>Ubuntu, Debian, Arch, Fedora</div>
-              </div>
-              <Download size={16} color="var(--cyan-primary)" />
-            </a>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <a
+                href={`https://github.com/Aryan4132/Meridian-X/releases/download/${versionInfo.tagName}/meridian-x_${versionInfo.version}_amd64.deb`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                style={{ flex: 1, justifyContent: 'space-between', borderColor: detectedOS.includes('Linux') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
+              >
+                <div>
+                  <strong>🐧 Linux (.deb)</strong>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Debian / Ubuntu</div>
+                </div>
+                <Download size={15} color="var(--cyan-primary)" />
+              </a>
+
+              <a
+                href={`https://github.com/Aryan4132/Meridian-X/releases/download/${versionInfo.tagName}/meridian-x_${versionInfo.version}_amd64.AppImage`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                style={{ flex: 1, justifyContent: 'space-between', borderColor: 'var(--border-glass)' }}
+              >
+                <div>
+                  <strong>🐧 AppImage</strong>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Standalone</div>
+                </div>
+                <Download size={15} color="var(--cyan-primary)" />
+              </a>
+            </div>
           </div>
 
           <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', textAlign: 'center' }}>
