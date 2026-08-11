@@ -118,7 +118,7 @@ export const Header: React.FC<HeaderProps> = ({ onDownloadClick, detectedOS }) =
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <button onClick={onDownloadClick} className="btn-primary" style={{ padding: '9px 18px', fontSize: '0.86rem', borderRadius: '10px' }}>
             <Download size={15} />
-            <span>Download ({detectedOS})</span>
+            <span>Download</span>
           </button>
 
           {/* Mobile Menu Toggle */}

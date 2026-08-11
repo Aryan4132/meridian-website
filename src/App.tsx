@@ -31,6 +31,22 @@ export const App: React.FC = () => {
     setIsMobile(mobileCheck);
   }, []);
 
+  const handleDirectDownload = () => {
+    // Direct 1-click download for latest release installer
+    const downloadUrl = 'https://github.com/Aryan4132/Meridian-X/releases/download/v0.4.0/meridian-x_0.4.0_x64-setup.exe';
+    
+    // Trigger direct file download
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = '';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Also open modal for OS selection option
+    setDownloadModalOpen(true);
+  };
+
   return (
     <div style={{ position: 'relative', minHeight: '100vh', background: 'var(--bg-obsidian)' }}>
       {/* Background Starfield */}
@@ -38,7 +54,7 @@ export const App: React.FC = () => {
 
       {/* Header Bar */}
       <Header
-        onDownloadClick={() => setDownloadModalOpen(true)}
+        onDownloadClick={handleDirectDownload}
         detectedOS={detectedOS}
       />
 
@@ -46,7 +62,7 @@ export const App: React.FC = () => {
       <Hero
         detectedOS={detectedOS}
         isMobile={isMobile}
-        onDownloadClick={() => setDownloadModalOpen(true)}
+        onDownloadClick={handleDirectDownload}
       />
 
       {/* Interactive ReAct Terminal Simulator */}
