@@ -11,16 +11,23 @@ interface McpExtension {
 
 const MCP_EXTENSIONS: McpExtension[] = [
   {
+    name: 'Reverse MCP Server',
+    category: 'IDE Integration',
+    description: 'Exposes internal TOOL_REGISTRY at /api/mcp/v1/tools for Cursor, VS Code & Claude Desktop.',
+    installed: true,
+    color: '#F43F5E'
+  },
+  {
     name: 'GitHub Protocol',
     category: 'Code Automation',
-    description: 'Create PRs, read repos, review code diffs & manage issues locally.',
+    description: 'Create PRs, read repos, review code diffs & manage issues locally via mcp_client.py.',
     installed: true,
     color: '#FAFAFA'
   },
   {
     name: 'PostgreSQL Direct',
     category: 'Database RAG',
-    description: 'Inspect schemas, run sandboxed queries, and vectorize database rows.',
+    description: 'Inspect schemas, run sandboxed queries, and vectorize database rows into Turbovec.',
     installed: true,
     color: '#E4E4E7'
   },
@@ -36,7 +43,7 @@ const MCP_EXTENSIONS: McpExtension[] = [
     category: 'Communications',
     description: 'Summarize internal threads and draft responses securely.',
     installed: false,
-    color: '#FAFAFA'
+    color: '#38BDF8'
   }
 ];
 
@@ -49,7 +56,7 @@ export const McpMarketplace: React.FC = () => {
             Universal MCP Marketplace & <span className="gradient-text-amber">Encrypted Key Vault.</span>
           </h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: 1.6 }}>
-            Connect Meridian-X to your developer toolchain via open Model Context Protocol (MCP) servers with hardware-backed AES-256-GCM credential security.
+            Connect Meridian-X to your developer toolchain via open Model Context Protocol (MCP) servers and export your tool registry via reverse MCP server at <code>/api/mcp/v1/tools</code>.
           </p>
         </div>
 
@@ -80,31 +87,31 @@ export const McpMarketplace: React.FC = () => {
                 <Lock size={22} color="var(--emerald-accent)" />
               </div>
               <div>
-                <h3 style={{ fontSize: '1.15rem' }}>Local Key Vault</h3>
+                <h3 style={{ fontSize: '1.15rem' }}>Local Key Vault (vault.py)</h3>
                 <span style={{ fontSize: '0.78rem', color: 'var(--emerald-accent)', fontFamily: 'var(--font-code)' }}>
-                  AES-256-GCM OS Keychain
+                  AES-256-GCM Hardware Vault
                 </span>
               </div>
             </div>
 
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6 }}>
-              API keys & secrets stay AES-256-GCM encrypted in your local OS Keychain. Machine-bound HMAC-SHA256 passphrase derived from <code>hostname + username</code> with <code>slowapi</code> rate limiting. Zero plain text on disk.
+              API keys & secrets stay AES-256-GCM encrypted in your local vault (<code>vault.py</code>). Machine-bound HMAC-SHA256 passphrase derived from <code>hostname + username + salt</code> with <code>SlowAPI</code> rate limiting (10 req/min). Zero plain text stored.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div style={vaultItemStyle}>
                 <Key size={14} color="var(--emerald-accent)" />
-                <span>GitHub PAT Token</span>
+                <span>OpenAI / Anthropic / Gemini Key</span>
                 <strong style={{ color: 'var(--emerald-accent)' }}>ENCRYPTED</strong>
               </div>
               <div style={vaultItemStyle}>
                 <Key size={14} color="var(--emerald-accent)" />
-                <span>Postgres DB Connection URI</span>
+                <span>Groq / OpenRouter / DeepSeek</span>
                 <strong style={{ color: 'var(--emerald-accent)' }}>ENCRYPTED</strong>
               </div>
               <div style={vaultItemStyle}>
                 <Key size={14} color="var(--emerald-accent)" />
-                <span>Linear API Secret</span>
+                <span>Tavily / Discord / Telegram Bot Token</span>
                 <strong style={{ color: 'var(--emerald-accent)' }}>ENCRYPTED</strong>
               </div>
             </div>

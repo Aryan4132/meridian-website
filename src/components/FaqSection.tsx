@@ -8,28 +8,36 @@ interface FaqItem {
 
 const FAQS: FaqItem[] = [
   {
+    question: 'How does the Multi-Agent Swarm & Debate Engine work?',
+    answer: 'The Swarm Debate Engine (swarm.py, SwarmDebate.tsx) orchestrates multi-perspective autonomous deliberations between customizable agent personas (Security Auditor, Code Architect, Performance Optimizer). It streams real-time debate thoughts via /api/swarm/stream for adversarial consensus validation.'
+  },
+  {
+    question: 'What is the P2P Mesh Network & Encrypted Peer Offloading?',
+    answer: 'The P2P mesh engine (p2p.py, p2p_crypto.py) discovers local LAN/WAN Meridian-X nodes over port 8765. Tasks can be offloaded securely using end-to-end asymmetric encryption keys across trusted peer nodes.'
+  },
+  {
+    question: 'How does Temporal Memory & Time-Travel Rollback work?',
+    answer: 'Temporal memory (temporal_memory.py, Timeline.tsx) captures granular session snapshots of workspace state, code changes, and task outputs. You can roll back workspace state to any historical snapshot via /api/history/rollback.'
+  },
+  {
+    question: 'How does the Non-Techie Onboarding Wizard work?',
+    answer: 'The onboarding wizard (OnboardingWizard.tsx) runs hardware spec detection (hardware_detector.py) analyzing CPU cores, RAM, and NVIDIA VRAM (pynvml) to classify your PC into Entry (<8GB), Mid (8-16GB), or High (>16GB) tiers. It automatically scans Ollama ports 11434, 11435, 8080, and 5000 (ollama_manager.py) and streams model pulls via real-time SSE.'
+  },
+  {
+    question: 'Can I self-host Meridian-X remotely using Docker?',
+    answer: 'Yes! Meridian-X supports remote backend self-hosting via docker-compose.yml (direct IP) or production docker-compose.prod.yml (with automated Caddy SSL reverse proxy). You can switch target servers instantly using the Server Connection Modal (MERIDIAN_REMOTE_BACKEND_URL). Full instructions are in docs/SELF_HOSTING.md.'
+  },
+  {
+    question: 'What is the Reverse MCP Server feature?',
+    answer: 'In addition to connecting 1-click MCP plugins (GitHub, PostgreSQL, Slack, Linear), Meridian-X exposes its internal TOOL_REGISTRY as a reverse MCP server at /api/mcp/v1/tools. This allows external IDEs like Cursor, VS Code, and Claude Desktop to consume Meridian-X tools directly.'
+  },
+  {
     question: 'What global hotkeys are supported in Meridian-X?',
     answer: 'Meridian-X provides sub-10ms global shortcuts: `Alt + M` toggles the main desktop workspace window, `Alt + Shift + M` toggles the compact 3D mascot floating island HUD, and `Alt + V` triggers instant push-to-talk voice dictation.'
   },
   {
-    question: 'What hardware is required to run Meridian-X locally?',
-    answer: 'Meridian-X runs on Windows 11, macOS 12+ (Apple Silicon & Intel), and Linux. Minimum requirements are 8 GB RAM with AVX2 CPU. Recommended is 16 GB+ RAM with an NVIDIA RTX 3060 or Apple M-series chip. For CPU-only hardware, enable Low RAM Mode in Settings or add a cloud API key.'
-  },
-  {
-    question: 'How do the 11 Selectable Design Styles work?',
-    answer: 'Navigate to Settings → Mascot & Style to switch between 11 curated design themes including Classic Cyber Slate, Art Deco Luxury, Neobrutalism, Cyberpunk Neon, Retro Synthwave, Ink & Slate, Nordic Frost, Maximalism, Paper & Ink, Sakura Blossom, and Solaris Light.'
-  },
-  {
-    question: 'How does the Focus Distraction Blocker work?',
-    answer: 'The Focus Shield monitors background desktop processes and web traffic during Pomodoro focus blocks. It automatically blocks distracting domains (YouTube, Reddit, Twitter/X, Twitch) and shuts down target background apps (discord.exe, steam.exe).'
-  },
-  {
     question: 'How does 100% offline privacy and AES-GCM Vault work?',
-    answer: 'Meridian-X embeds local Ollama runtime and Turbovec vector storage. Credentials are encrypted in local OS Keyring via AES-256-GCM with machine-bound HMAC-SHA256 passphrase derivation. Zero code, API keys, or prompt telemetry ever leave your device.'
-  },
-  {
-    question: 'Is Meridian-X free and open source?',
-    answer: 'Yes! Meridian-X is created by Aryan and released under the open-source MIT License. You can inspect the codebase, contribute on GitHub, or install 1-click MCP servers for free.'
+    answer: 'Meridian-X embeds local Ollama runtime and Turbovec vector storage. Credentials are encrypted in local vault (vault.py) via AES-256-GCM with machine-bound HMAC-SHA256 passphrase derivation (hostname + username + salt). Zero code, API keys, or prompt telemetry ever leave your device.'
   }
 ];
 

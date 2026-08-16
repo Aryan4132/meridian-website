@@ -14,60 +14,64 @@ interface Step {
 const DEMO_STEPS: Step[] = [
   {
     stage: 'THINK',
-    title: 'Analyze Goal & Assemble Unified Prompt Context',
-    detail: 'Inspecting local workspace repository. Assembling prompt context in parallel from Turbovec Vector RAG, Knowledge Graph memory, and 50-slot persistent clipboard buffer.',
-    codeSnippet: `// 3-Way Context Assembly (Parallel)
-const [vectorContext, kgNodes, pastHistory] = await Promise.all([
+    title: 'Analyze Goal & Assemble Unified Context',
+    detail: 'Inspecting workspace context. Assembling prompt context in parallel from Turbovec Vector RAG, Code Graph (code_graph.py), SQLite WAL, and 50-slot clipboard buffer.',
+    codeSnippet: `// Hardware & Context Assembly (hardware_detector.py & code_graph.py)
+const spec = await hardwareDetector.getSpec(); // Tier: MID (16GB RAM)
+const [vectorContext, kgNodes, codeSymbols] = await Promise.all([
   turbovec.query(queryEmbedding, { top_k: 5 }),
-  knowledgeGraph.findEntities(topic),
-  sqliteWal.getRecentHistory(10)
+  graphRAG.findEntities(topic),
+  codeGraph.searchSymbols("loop.py")
 ]);`,
     color: '#38BDF8',
     duration: 1800
   },
   {
     stage: 'PLAN',
-    title: 'Fast Auditor LLM Check & Schema Validation',
-    detail: 'Fast Auditor LLM checks tool call schemas and Python code blocks before execution to catch logic bugs early.',
-    codeSnippet: `// Fast Auditor Gate (Any Fast Local Model)
-const audit = await auditorLLM.validate({
-  plan: ["search_web", "write_file", "run_python"],
-  sandbox_gate: "SEC-16_ENFORCED"
+    title: 'Multi-Agent Swarm Debate & Workflow DAG',
+    detail: 'Triggering multi-persona debate (swarm.py) and visual automation DAG (workflow_engine.py) to validate complex reasoning steps.',
+    codeSnippet: `// Multi-Agent Swarm Debate (swarm.py & /api/swarm/stream)
+const debate = await swarmEngine.deliberate({
+  personas: ["SecurityAuditor", "CodeArchitect", "PerformanceOptimizer"],
+  topic: "Parallel asyncio.gather tool execution flow"
 });
-// Status: APPROVED (0.02s latency)`,
-    color: '#A78BFA',
-    duration: 2000
+// Consensus: APPROVED with 0 security warnings`,
+    color: '#F59E0B',
+    duration: 2200
   },
   {
     stage: 'ACT',
-    title: 'Speculative Concurrency Router: Tier 0 Execution',
-    detail: 'Dual-lane router executes Tier 0 read-only tools (read_file, search_web) concurrently in parallel via asyncio.gather().',
-    codeSnippet: `// Tier 0 Read-Only Concurrency (Parallel)
+    title: 'Speculative Concurrency & Playwright Automation',
+    detail: 'Dual-lane router executes Tier 0 read-only tools concurrently, while Playwright agent (browser_agent.py) and desktop GUI automation execute Tier 1 actions.',
+    codeSnippet: `// Tier 0 Read-Only Concurrency (asyncio.gather)
 const [fileData, searchResults] = await asyncio.gather(
-  toolRegistry.call("read_file", { path: "api.py" }),
-  toolRegistry.call("search_web", { query: "FastAPI rate limit slowapi" })
-);`,
+  toolRegistry.call("read_file", { path: "meridian_backend/src/core/loop.py" }),
+  toolRegistry.call("search_web", { query: "FastAPI SlowAPI rate limiting" })
+);
+// Playwright Web Agent (browser_agent.py) launched`,
     color: '#10B981',
     duration: 2200
   },
   {
     stage: 'OBSERVE',
-    title: 'Intercept & Heal Tool Parameter Mismatches',
-    detail: 'Self-correction engine detects parameter mismatch in mutating Tier 1 command and auto-heals parameters against TOOL_REGISTRY.',
-    codeSnippet: `[WARN] Tool call signature mismatch: 'file_path' expected 'path'.
+    title: 'Self-Healing Engine & Tool Parameter Repair',
+    detail: 'Self-correction engine catches tool signature mismatches against TOOL_REGISTRY and auto-injects corrected arguments in loop.py.',
+    codeSnippet: `[WARN] Signature mismatch in tool call: 'file_path' expected 'path'.
 [HEAL] Self-Healing Applied: Remapped 'file_path' -> 'path'.
-[SSE Stream] Mascot Island Spin State: AMBER (Working) -> FAST_SPIN`,
+[SSE Stream] Telemetry Stream: /api/chat/stream -> EVENT: HEALED
+[Mascot State] Three.js Ring: AMBER (Working) -> FAST_SPIN`,
     color: '#F59E0B',
     duration: 2400
   },
   {
     stage: 'SELF-CORRECT',
-    title: 'Final Observe, Supertonic Speech & State Persistence',
-    detail: 'Task completed cleanly. Persisting state to SQLite WAL, triggering Supertonic TTS voice feedback, and updating Mascot Island to Green (Success).',
-    codeSnippet: `✓ ReAct Loop Completed (3 iterations)
-🔊 Supertonic TTS Voice: "Male M3 (Deep) - Task executed cleanly."
-🦊 Mascot State: GREEN (Success)
-💾 Persisted to SQLite WAL + Turbovec Graph Memory`,
+    title: 'Temporal Rollback Snapshot & Supertonic Speech',
+    detail: 'Task completed cleanly. Creating temporal memory snapshot (temporal_memory.py), retrieving AES vault secret (vault.py), and triggering Supertonic TTS voice.',
+    codeSnippet: `✓ ReAct Loop Completed (meridian_backend/src/core/loop.py)
+💾 Temporal Snapshot Saved (temporal_memory.py / Timeline.tsx)
+🔐 AES-256-GCM Vault (vault.py): Secret retrieved via HMAC passphrase
+🔊 Supertonic TTS: 10 Local Voices ("Male M3 - Execution completed.")
+🦊 Mascot State: GREEN (Success - 60 FPS Three.js Ring)`,
     color: '#10B981',
     duration: 2500
   }

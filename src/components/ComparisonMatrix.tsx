@@ -16,50 +16,56 @@ const COMPARISON_ROWS: MatrixRow[] = [
     highlight: true
   },
   {
+    feature: 'Multi-Agent Swarm Debate',
+    meridianX: 'Adversarial consensus & persona debate (swarm.py)',
+    cloudAgents: 'Single model output (No debate)',
+    highlight: true
+  },
+  {
+    feature: 'Visual Workflow DAG Builder',
+    meridianX: 'Drag-and-Drop Node Graph (WorkflowBuilder.tsx)',
+    cloudAgents: 'Linear prompt chains',
+    highlight: false
+  },
+  {
+    feature: 'P2P Encrypted Peer Mesh',
+    meridianX: 'Distributed LAN/WAN offloading (p2p.py)',
+    cloudAgents: 'Centralized server lock-in',
+    highlight: false
+  },
+  {
     feature: 'Overlay Launcher & Hotkeys',
     meridianX: 'Sub-10ms Overlay (Alt+M, Alt+Shift+M, Alt+V)',
     cloudAgents: 'Browser-only / High latency API',
     highlight: true
   },
   {
-    feature: '3D Mascot Companion & Themes',
-    meridianX: '4-State Orbital Companion + 11 Selectable Themes',
-    cloudAgents: 'Generic Browser Web Dashboard',
-    highlight: false
-  },
-  {
-    feature: 'Focus Shield & Pastebuffer',
-    meridianX: 'Pomodoro Blocker + 50-Slot Clipboard Monitor',
-    cloudAgents: 'None',
+    feature: 'Playwright & Desktop GUI Agent',
+    meridianX: 'Web browser agent & desktop macro recorder',
+    cloudAgents: 'Text-only web responses',
     highlight: false
   },
   {
     feature: 'Autonomous ReAct Loop',
-    meridianX: 'Self-Healing AST & Fast Auditor (Any Local LLM)',
+    meridianX: 'Self-Healing AST & Fast Auditor (loop.py)',
     cloudAgents: 'Basic Prompting / Retries',
     highlight: true
   },
   {
-    feature: 'Speculative Concurrency',
-    meridianX: 'Tier 0 Parallel asyncio + Tier 1 Sequential',
-    cloudAgents: 'Single Thread / Blocking',
-    highlight: false
-  },
-  {
-    feature: 'Persistent Vector Memory',
-    meridianX: 'Turbovec Vector RAG + Knowledge Graph',
-    cloudAgents: 'Ephemeral Session Context',
+    feature: 'Temporal History Rollback',
+    meridianX: 'Granular snapshots & time-travel rollback',
+    cloudAgents: 'Transient chat logs',
     highlight: false
   },
   {
     feature: 'API Key Security',
-    meridianX: 'AES-256-GCM Vault + HMACPassphrase',
+    meridianX: 'AES-256-GCM Vault (vault.py) + HMAC Passphrase',
     cloudAgents: 'Plaintext / Server-Side Key Vault',
     highlight: false
   },
   {
-    feature: 'Supertonic Voice Engine',
-    meridianX: '10 Local Speaker Voices (Male/Female)',
+    feature: 'Voice Engine & Wake-Word',
+    meridianX: "'Hey Meridian' ONNX Wake-Word + 10 Local Voices",
     cloudAgents: 'Cloud API TTS ($/char)',
     highlight: false
   },

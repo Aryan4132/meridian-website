@@ -22,69 +22,80 @@ export interface SystemLayer {
 const ARCH_LAYERS: SystemLayer[] = [
   {
     stepNum: 1,
-    layerTitle: '1️⃣ Trigger Layer',
-    subtitle: 'System Inputs & Event Surveillance',
+    layerTitle: '1️⃣ Trigger & Entry Layer',
+    subtitle: 'Workspace Chat, ONNX Wake-Word, Social Bridges & P2P Mesh',
     accentColor: '#818CF8',
     nodes: [
-      { id: 't1', name: '💬 Workspace Chat UI', badge: 'Tauri v2', tech: 'React 18', desc: 'Main desktop workspace window & chat shell', color: '#818CF8' },
-      { id: 't2', name: '🎮 Overlay HUD (Alt+Shift+M)', badge: 'Sub-10ms', tech: 'Tauri IPC', desc: 'Frameless GPU overlay HUD', color: '#38BDF8' },
-      { id: 't3', name: '🎙️ Voice (Alt+V)', badge: 'Push-to-Talk', tech: 'PyAudio', desc: 'Instant dictation & wake word engine', color: '#EC4899' },
-      { id: 't4', name: '📋 Clipboard Watcher', badge: 'Surveillance', tech: 'Pyperclip', desc: '50-slot persistent pastebuffer classifier', color: '#A78BFA' }
+      { id: 't1', name: '💬 Workspace Chat UI', badge: 'Tauri v2', tech: 'React 18', desc: 'Main desktop workspace window & React chat shell', color: '#818CF8' },
+      { id: 't2', name: '🎮 Overlay HUD (Alt+Shift+M)', badge: 'Sub-10ms', tech: 'Tauri IPC', desc: 'Frameless GPU overlay & compact mascot island', color: '#38BDF8' },
+      { id: 't3', name: '🎙️ Wake Word ("Hey Meridian")', badge: 'ONNX Engine', tech: 'wakeword.py', desc: 'Hands-free ONNX wake-word listener & Supertonic voice', color: '#EC4899' },
+      { id: 't4', name: '📋 Clipboard & Watchers', badge: 'clipboard.py', tech: 'watcher.py', desc: '50-slot pastebuffer listener & proactive event monitors', color: '#A78BFA' },
+      { id: 't5', name: '🤖 Social Bot Bridges', badge: 'Discord/TG/WA', tech: 'social_bridge', desc: 'Discord, Telegram & WhatsApp remote control bridges', color: '#67E8F9' },
+      { id: 't6', name: '🌐 Remote & P2P Peer Req', badge: 'P2P Mesh', tech: 'p2p.py (8765)', desc: 'Remote backend URL switcher & P2P mesh task offload', color: '#34D399' }
     ]
   },
   {
     stepNum: 2,
-    layerTitle: '2️⃣ Security Gate',
-    subtitle: 'Authentication & Threat Sanitization',
+    layerTitle: '2️⃣ Security & Verification Gate',
+    subtitle: 'SEC-01..SEC-26 Security, Rate Limiting & Sandboxed Execution',
     accentColor: '#38BDF8',
     nodes: [
-      { id: 's1', name: '🛡️ Auth & Rate Limiter', badge: 'SEC-01', tech: 'SlowAPI', desc: 'X-API-Key middleware & endpoint rate limits', color: '#38BDF8' },
-      { id: 's2', name: '🧹 Prompt Injection Sanitizer', badge: 'SEC-16', tech: 'Regex AST', desc: 'Strips jailbreak directives & zero-width unicode', color: '#0284C7' }
+      { id: 's1', name: '🛡️ Auth Check (X-API-Key)', badge: 'require_api_key', tech: 'FastAPI Depends', desc: 'X-API-Key middleware & token auth verification', color: '#38BDF8' },
+      { id: 's2', name: '⏱️ SlowAPI Rate Limiter', badge: 'SlowAPI', tech: '20 req/min', desc: '20 req/min chat & 10 req/min vault endpoint protection', color: '#0EA5E9' },
+      { id: 's3', name: '🧹 Prompt Injection Sanitizer', badge: 'SEC-16', tech: 'prompt_injection.py', desc: 'Strips jailbreak directives & zero-width unicode exploits', color: '#0284C7' },
+      { id: 's4', name: '🛡️ Defense & Sandbox Runner', badge: 'system_defense', tech: 'sandbox_runner.py', desc: 'System Defense Shield and isolated execution runner', color: '#6366F1' }
     ]
   },
   {
     stepNum: 3,
-    layerTitle: '3️⃣ Context Assembly',
-    subtitle: 'Parallel Memory & Knowledge Retrieval',
+    layerTitle: '3️⃣ Unified Context Assembly',
+    subtitle: 'Turbovec Vector RAG, Knowledge Graph & LSP Symbols',
     accentColor: '#67E8F9',
     nodes: [
-      { id: 'c1', name: '⚡ Turbovec Vector RAG', badge: '< 1ms', tech: 'HNSW Index', desc: 'Local vector store for document & repo context', color: '#67E8F9' },
-      { id: 'c2', name: '🕸️ Knowledge Graph', badge: 'Entity Graph', tech: 'SQLite WAL', desc: 'Persistent entity-relationship memory graph', color: '#22D3EE' },
-      { id: 'c3', name: '📜 Conversation History', badge: 'Buffer', tech: 'FastAPI Session', desc: 'Multi-turn context window history', color: '#06B6D4' }
+      { id: 'c1', name: '⚡ Turbovec Vector RAG', badge: '< 1ms RAG', tech: 'rag_optimizer.py', desc: 'Local vector store for document & repo embeddings', color: '#67E8F9' },
+      { id: 'c2', name: '🕸️ Knowledge Graph', badge: 'graph_rag.py', tech: 'SQLite WAL + Mongo', desc: 'Entity-relationship graph memory with Mongo sync', color: '#22D3EE' },
+      { id: 'c3', name: '📜 Temporal Memory History', badge: 'Timeline.tsx', tech: 'temporal_memory.py', desc: 'Granular conversation snapshots & time-travel rollback', color: '#06B6D4' },
+      { id: 'c4', name: '💻 System Specs & Env State', badge: 'hardware_detector.py', tech: 'pynvml + Ollama Scan', desc: 'Entry/Mid/High tier classification & multi-port scan', color: '#38BDF8' },
+      { id: 'c5', name: '🔍 Code Graph & LSP Symbols', badge: 'code_graph.py', tech: 'lsp_client.py', desc: 'LSP client symbol graph, AST references & linting', color: '#A78BFA' }
     ]
   },
   {
     stepNum: 4,
-    layerTitle: '4️⃣ ReAct Reasoning',
-    subtitle: 'Autonomous Plan & Self-Correction Kernel',
+    layerTitle: '4️⃣ Reasoning & Execution Engine',
+    subtitle: 'ReAct Loop (loop.py), Multi-Agent Swarm & Workflow DAG',
     accentColor: '#A78BFA',
     nodes: [
-      { id: 'r1', name: '🧠 Reason Kernel (Local Ollama / Cloud)', badge: 'Reasoning', tech: 'FastAPI Async', desc: 'Generates structured ReAct tool execution plans', color: '#A78BFA' },
-      { id: 'r2', name: '❓ Schema & Syntax Auditor', badge: 'Fast Auditor', tech: 'Python AST', desc: 'Validates code & tool schemas before execution', color: '#8B5CF6' },
-      { id: 'r3', name: '🩹 Self-Correction Healer', badge: 'Auto-Heal', tech: 'TOOL_REGISTRY', desc: 'Intercepts tool errors and repairs parameters', color: '#7C3AED' }
+      { id: 'r1', name: '🧠 LLM ReAct Loop (loop.py)', badge: 'Async ReAct', tech: 'loop.py', desc: 'Asynchronous Reason → Act → Observe iterative execution loop', color: '#A78BFA' },
+      { id: 'r2', name: '🐝 Swarm Debate Engine', badge: 'SwarmDebate.tsx', tech: 'swarm.py', desc: 'Multi-agent persona debate & adversarial consensus', color: '#F59E0B' },
+      { id: 'r3', name: '⚡ Workflow DAG Engine', badge: 'WorkflowBuilder', tech: 'workflow_engine.py', desc: 'Node-based visual automation graph & conditional loops', color: '#8B5CF6' },
+      { id: 'r4', name: '❓ Tool Signature Auditor', badge: 'TOOL_REGISTRY', tech: 'registry.py', desc: 'Validates tool schemas & code blocks before execution', color: '#7C3AED' },
+      { id: 'r5', name: '🩹 Self-Healing Corrector', badge: 'Auto-Fix', tech: 'Parameter Corrector', desc: 'Catches schema mismatches & re-injects repaired arguments', color: '#EC4899' }
     ]
   },
   {
     stepNum: 5,
-    layerTitle: '5️⃣ Tiered Execution Engine',
-    subtitle: 'Speculative Concurrency & Transaction Safety',
+    layerTitle: '5️⃣ Tiered Tool & Automation Execution',
+    subtitle: 'Speculative Concurrency, Playwright & P2P Mesh',
     accentColor: '#4ADE80',
     nodes: [
-      { id: 'e1', name: '⚡ Tier 0 (Read-Only Concurrent)', badge: 'Parallel', tech: 'asyncio.gather', desc: 'Executes read_file, search_web concurrently', color: '#4ADE80', subItems: ['read_file', 'search_web', 'fetch_url'] },
-      { id: 'e2', name: '🔒 Tier 1+ (Mutating Sequential)', badge: 'Sequential', tech: 'Transaction Gate', desc: 'Executes write_file, run_command in order', color: '#FB923C', subItems: ['write_file', 'run_command', 'gui_click'] },
-      { id: 'e3', name: '🔌 MCP Server Plugins', badge: '1-Click MCP', tech: 'JSON-RPC', desc: 'Direct tool injection for GitHub, Postgres, Slack', color: '#F43F5E' }
+      { id: 'e1', name: '⚡ Tier 0 (Parallel Read-Only)', badge: 'asyncio.gather', tech: 'Parallel Exec', desc: 'Executes read_file, search_web, code_graph concurrently', color: '#4ADE80', subItems: ['read_file', 'search_web', 'code_graph', 'db_query'] },
+      { id: 'e2', name: '🔒 Tier 1+ (Mutating Sequential)', badge: 'Transaction Safety', tech: 'Sequential Gate', desc: 'Executes write_file, run_command in transactional safety', color: '#FB923C', subItems: ['write_file', 'run_command', 'desktop_gui', 'browser_agent'] },
+      { id: 'e3', name: '🌐 Playwright & Desktop Agent', badge: 'browser_agent.py', tech: 'desktop.py', desc: 'Playwright web agent & GUI mouse/keyboard recording', color: '#38BDF8' },
+      { id: 'e4', name: '🔌 MCP Marketplace & P2P Mesh', badge: '/api/mcp/v1/tools', tech: 'p2p.py + MCP', desc: 'Reverse MCP server at /api/mcp/v1/tools & P2P task offload', color: '#F43F5E' }
     ]
   },
   {
     stepNum: 6,
-    layerTitle: '6️⃣ Observe, Respond & Persist',
-    subtitle: 'Telemetry, Telepathic Mascot & Hardware Vault',
+    layerTitle: '6️⃣ Telemetry, Persistence & Output',
+    subtitle: 'AES Vault, Temporal Snapshots & 3D Mascot Ring',
     accentColor: '#FF71CE',
     nodes: [
-      { id: 'o1', name: '👁️ Observe & Merge Results', badge: 'Loop Check', tech: 'ReAct Cycle', desc: 'Merges tool outputs into final user response', color: '#FF71CE' },
-      { id: 'o2', name: '🔊 Supertonic TTS Engine', badge: '10 Voices', tech: 'Local TTS', desc: 'Local speech synthesis & state-change audio FX', color: '#EC4899' },
-      { id: 'o3', name: '🔐 AES-256-GCM Vault', badge: 'Encrypted', tech: 'OS Keyring', desc: 'Hardware-bound secret key storage', color: '#FFDE59' },
-      { id: 'o4', name: '🦊 Mascot & Dynamic Island', badge: '60 FPS', tech: 'SSE Stream', desc: 'Real-time cognitive state ring (Blue/Amber/Red/Green)', color: '#38BDF8' }
+      { id: 'o1', name: '👁️ Observe & Merge Output', badge: 'ReAct Cycle', tech: 'Loop Evaluator', desc: 'Merges tool outputs & checks task completion status', color: '#FF71CE' },
+      { id: 'o2', name: '🔐 AES-256-GCM Key Vault', badge: 'vault.py', tech: 'HMAC Passphrase', desc: 'AES-GCM encryption bound to hostname + username + salt', color: '#FFDE59' },
+      { id: 'o3', name: '💾 SQLite WAL & Temporal Log', badge: 'temporal_memory', tech: 'database.py', desc: 'Task execution logging & time-travel state rollback', color: '#34D399' },
+      { id: 'o4', name: '📡 Real-Time SSE Telemetry', badge: '/api/chat/stream', tech: 'SSE Stream', desc: 'Streams PLANNING, EXEC, STATUS, WARNING telemetry to UI', color: '#38BDF8' },
+      { id: 'o5', name: '🔊 Supertonic Neural TTS', badge: 'duplex.py', tech: 'tts.py + stt.py', desc: '10-voice local neural speech synthesis & Faster-Whisper STT', color: '#EC4899' },
+      { id: 'o6', name: '🦊 3D Mascot State Animation', badge: 'Three.js 60 FPS', tech: 'Mascot.tsx', desc: 'Blue (Idle), Amber (Working), Red (Error), Green (Success)', color: '#10B981' }
     ]
   }
 ];

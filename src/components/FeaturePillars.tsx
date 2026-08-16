@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import { FEATURE_PILLARS, FEATURE_PILLARS as PillarsData, DESIGN_STYLES, DesignStyle } from '../data/features';
-import { ShieldCheck, Cpu, Database, Eye, Zap, Lock, CheckCircle, Code, Sparkles, Layers, ShieldAlert, ClipboardList, Volume2, BarChart3, Feather, Palette } from 'lucide-react';
+import { ShieldCheck, Cpu, Database, Eye, Zap, Lock, CheckCircle, Code, Sparkles, Layers, ShieldAlert, ClipboardList, Volume2, BarChart3, Feather, Palette, Users, GitMerge, Network, FileCode, MonitorPlay, History, MessageSquare, Server, Plug } from 'lucide-react';
 
 const iconMap: Record<string, React.ReactNode> = {
   ShieldCheck: <ShieldCheck size={22} color="#10B981" />,
   Cpu: <Cpu size={22} color="#E4E4E7" />,
+  Users: <Users size={22} color="#F59E0B" />,
+  GitMerge: <GitMerge size={22} color="#8B5CF6" />,
+  Network: <Network size={22} color="#EC4899" />,
+  FileCode: <FileCode size={22} color="#38BDF8" />,
+  MonitorPlay: <MonitorPlay size={22} color="#67E8F9" />,
+  History: <History size={22} color="#14B8A6" />,
+  MessageSquare: <MessageSquare size={22} color="#A78BFA" />,
   Sparkles: <Sparkles size={22} color="#38BDF8" />,
+  Server: <Server size={22} color="#67E8F9" />,
+  Plug: <Plug size={22} color="#F43F5E" />,
   Zap: <Zap size={22} color="#F59E0B" />,
   Layers: <Layers size={22} color="#A78BFA" />,
   Lock: <Lock size={22} color="#10B981" />,
