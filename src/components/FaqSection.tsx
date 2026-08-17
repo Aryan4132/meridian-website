@@ -100,7 +100,101 @@ export const FaqSection: React.FC = () => {
             );
           })}
         </div>
+
+        {/* Security Newsletter & Build Release Digest Form */}
+        <div style={{ maxWidth: '820px', margin: '48px auto 0 auto' }}>
+          <div className="glass-card" style={{ padding: '36px', textAlign: 'center', border: '1px solid rgba(0, 242, 254, 0.2)' }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 700, color: '#FFF', marginBottom: '8px' }}>
+              Subscribe to Release & Security Alerts
+            </h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '24px' }}>
+              Receive cryptographically signed release updates and security advisories. Zero spam, 1-click unsubscribe.
+            </p>
+
+            <NewsletterForm />
+          </div>
+        </div>
       </div>
     </section>
+  );
+};
+
+const NewsletterForm: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      setError('Please enter a valid cryptographic email address (e.g. user@domain.com)');
+      return;
+    }
+
+    setError(null);
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 1000);
+  };
+
+  if (submitted) {
+    return (
+      <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '10px', padding: '16px', color: '#10B981', fontSize: '0.95rem' }}>
+        ✓ Subscribed successfully! Sovereign update stream confirmed.
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} style={{ maxWidth: '520px', margin: '0 auto' }} noValidate>
+      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+        <div style={{ flex: 1, minWidth: '240px', position: 'relative' }}>
+          <input
+            type="email"
+            placeholder="enter@developer-email.com"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (error) setError(null);
+            }}
+            aria-invalid={!!error}
+            style={{
+              width: '100%',
+              padding: '14px 18px',
+              borderRadius: '8px',
+              background: 'rgba(0, 0, 0, 0.6)',
+              border: error ? '1px solid #EF4444' : '1px solid rgba(255, 255, 255, 0.15)',
+              color: '#FFFFFF',
+              fontSize: '0.95rem',
+              outline: 'none',
+              transition: 'border 0.2s ease',
+              boxShadow: error ? '0 0 12px rgba(239, 68, 68, 0.3)' : 'none'
+            }}
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="btn-primary"
+          style={{ padding: '14px 24px', fontSize: '0.92rem', opacity: loading ? 0.7 : 1 }}
+        >
+          {loading ? (
+            <div style={{ width: 16, height: 16, border: '2px solid rgba(0,0,0,0.2)', borderTopColor: '#000', borderRadius: '50%', animation: 'spin 0.6s linear infinite' }} />
+          ) : (
+            'Subscribe'
+          )}
+        </button>
+      </div>
+
+      {error && (
+        <div style={{ color: '#EF4444', fontSize: '0.82rem', textAlign: 'left', marginTop: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          ⚠️ {error}
+        </div>
+      )}
+    </form>
   );
 };

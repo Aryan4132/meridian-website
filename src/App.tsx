@@ -9,15 +9,31 @@ import { McpMarketplace } from './components/McpMarketplace';
 import { ComparisonMatrix } from './components/ComparisonMatrix';
 import { FaqSection } from './components/FaqSection';
 import { Footer, DownloadModal } from './components/Footer';
-import { useMeridianVersion } from './utils/version';
+import { NotFound } from './components/NotFound';
+import { PrivacyPolicy } from './components/PrivacyPolicy';
+import { TermsOfService } from './components/TermsOfService';
+import { ThankYou } from './components/ThankYou';
+import { CookieBanner } from './components/CookieBanner';
+import { StickyMobileCTA } from './components/StickyMobileCTA';
+import { updatePageSeo } from './utils/seo';
+import { analytics } from './utils/analytics';
 
 export const App: React.FC = () => {
   const [detectedOS, setDetectedOS] = useState<string>('Windows');
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [downloadModalOpen, setDownloadModalOpen] = useState<boolean>(false);
-  const versionInfo = useMeridianVersion();
+  const [currentPath, setCurrentPath] = useState<string>(window.location.pathname);
 
   useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      setCurrentPath(path);
+      updatePageSeo(path);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    updatePageSeo(window.location.pathname);
+
     const ua = navigator.userAgent;
     let os = 'Windows';
     if (ua.includes('Macintosh') || ua.includes('Mac OS X')) {
@@ -31,11 +47,71 @@ export const App: React.FC = () => {
 
     const mobileCheck = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) || window.innerWidth < 768;
     setIsMobile(mobileCheck);
+
+    analytics.track('page_view', { path: window.location.pathname });
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
+  const navigateTo = (path: string) => {
+    window.history.pushState({}, '', path);
+    setCurrentPath(path);
+    updatePageSeo(path);
+    analytics.track('navigation', { path });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleDirectDownload = () => {
-    // Open modal so user chooses binary format (.exe, .msi, .dmg, .deb)
+    analytics.track('download_modal_opened', { os: detectedOS });
     setDownloadModalOpen(true);
+  };
+
+  const renderContent = () => {
+    switch (currentPath) {
+      case '/':
+        return (
+          <>
+            {/* Hero Section */}
+            <Hero
+              detectedOS={detectedOS}
+              isMobile={isMobile}
+              onDownloadClick={handleDirectDownload}
+            />
+
+            {/* Interactive ReAct Terminal Simulator */}
+            <ReactSimulator />
+
+            {/* 6 Core Feature Pillars */}
+            <FeaturePillars />
+
+            {/* Architecture & Tech Stack */}
+            <Architecture />
+
+            {/* MCP Marketplace & Local AES Key Vault */}
+            <McpMarketplace />
+
+            {/* Sovereign vs Cloud Comparison Matrix */}
+            <ComparisonMatrix />
+
+            {/* Frequently Asked Questions */}
+            <FaqSection />
+          </>
+        );
+
+      case '/privacy':
+        return <PrivacyPolicy onNavigateHome={() => navigateTo('/')} />;
+
+      case '/terms':
+        return <TermsOfService onNavigateHome={() => navigateTo('/')} />;
+
+      case '/thank-you':
+        return <ThankYou onNavigateHome={() => navigateTo('/')} detectedOS={detectedOS} />;
+
+      default:
+        return <NotFound onNavigateHome={() => navigateTo('/')} />;
+    }
   };
 
   return (
@@ -49,40 +125,27 @@ export const App: React.FC = () => {
         detectedOS={detectedOS}
       />
 
-      {/* Hero Section */}
-      <Hero
-        detectedOS={detectedOS}
-        isMobile={isMobile}
-        onDownloadClick={handleDirectDownload}
-      />
-
-      {/* Interactive ReAct Terminal Simulator */}
-      <ReactSimulator />
-
-      {/* 6 Core Feature Pillars */}
-      <FeaturePillars />
-
-      {/* Architecture & Tech Stack */}
-      <Architecture />
-
-      {/* MCP Marketplace & Local AES Key Vault */}
-      <McpMarketplace />
-
-      {/* Sovereign vs Cloud Comparison Matrix */}
-      <ComparisonMatrix />
-
-      {/* Frequently Asked Questions */}
-      <FaqSection />
+      {/* Main Page Routing */}
+      {renderContent()}
 
       {/* Footer & OS Download Modal */}
       <Footer
-        onDownloadClick={() => setDownloadModalOpen(true)}
+        onDownloadClick={handleDirectDownload}
         detectedOS={detectedOS}
       />
 
       <DownloadModal
         isOpen={downloadModalOpen}
         onClose={() => setDownloadModalOpen(false)}
+        detectedOS={detectedOS}
+      />
+
+      {/* Cookie Consent Banner */}
+      <CookieBanner />
+
+      {/* Mobile Sticky CTA Bar */}
+      <StickyMobileCTA
+        onDownloadClick={handleDirectDownload}
         detectedOS={detectedOS}
       />
     </div>

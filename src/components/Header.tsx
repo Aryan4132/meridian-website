@@ -43,10 +43,18 @@ export const Header: React.FC<HeaderProps> = ({ onDownloadClick, detectedOS }) =
     >
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Logo */}
-        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+        <a
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            window.history.pushState({}, '', '/');
+            window.dispatchEvent(new Event('popstate'));
+          }}
+          style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}
+        >
           <img
             src="/logo.png"
-            alt="Meridian-X Logo"
+            alt="Meridian-X Sovereign AI Workspace Logo"
             style={{
               width: '38px',
               height: '38px',

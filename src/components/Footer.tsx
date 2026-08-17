@@ -83,16 +83,21 @@ export const Footer: React.FC<FooterProps> = ({ onDownloadClick, detectedOS }) =
             </button>
           </div>
 
-          {/* Col 4: Community & Licensing */}
+          {/* Col 4: Project Maintainer & Links */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <h4 style={{ fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-main)' }}>
-              Open Source
+              Maintainer & Community
             </h4>
+            <span style={{ fontSize: '0.84rem', color: 'var(--text-dim)', lineHeight: 1.5 }}>
+              Open-source project maintained by <strong>Aryan</strong>. Built for complete local data sovereignty.
+            </span>
             <a href="https://github.com/Aryan4132/Meridian-X" target="_blank" rel="noopener noreferrer" style={footerLinkStyle}>
               <Github size={14} /> GitHub Repository
             </a>
-            <span style={footerTextStyle}>Licensed under MIT License</span>
-            <span style={footerTextStyle}>Version: {versionInfo.tagName} (Auto-Updated)</span>
+            <div style={{ display: 'flex', gap: '12px', marginTop: '6px' }}>
+              <a href="/privacy" onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', '/privacy'); window.dispatchEvent(new Event('popstate')); }} style={footerLinkStyle}>Privacy Policy</a>
+              <a href="/terms" onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', '/terms'); window.dispatchEvent(new Event('popstate')); }} style={footerLinkStyle}>Terms</a>
+            </div>
           </div>
         </div>
 
@@ -115,8 +120,8 @@ export const Footer: React.FC<FooterProps> = ({ onDownloadClick, detectedOS }) =
           </div>
 
           <div style={{ display: 'flex', gap: '20px' }}>
-            <span>Privacy First Policy</span>
-            <span>Zero Data Collection</span>
+            <a href="/privacy" onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', '/privacy'); window.dispatchEvent(new Event('popstate')); }} style={footerLinkStyle}>Privacy First Policy</a>
+            <a href="/thank-you" onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', '/thank-you'); window.dispatchEvent(new Event('popstate')); }} style={footerLinkStyle}>Verification Checksums</a>
           </div>
         </div>
       </div>
@@ -177,6 +182,11 @@ export const DownloadModal: React.FC<{ isOpen: boolean; onClose: () => void; det
                 href={versionInfo.downloadUrlExe}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  onClose();
+                  window.history.pushState({}, '', '/thank-you');
+                  window.dispatchEvent(new Event('popstate'));
+                }}
                 className="btn-secondary"
                 style={{ flex: 1, justifyContent: 'space-between', borderColor: detectedOS.includes('Windows') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
               >
@@ -191,6 +201,11 @@ export const DownloadModal: React.FC<{ isOpen: boolean; onClose: () => void; det
                 href={versionInfo.downloadUrlMsi}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  onClose();
+                  window.history.pushState({}, '', '/thank-you');
+                  window.dispatchEvent(new Event('popstate'));
+                }}
                 className="btn-secondary"
                 style={{ flex: 1, justifyContent: 'space-between', borderColor: 'var(--border-glass)' }}
               >
@@ -206,6 +221,11 @@ export const DownloadModal: React.FC<{ isOpen: boolean; onClose: () => void; det
               href={versionInfo.downloadUrlDmg}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                onClose();
+                window.history.pushState({}, '', '/thank-you');
+                window.dispatchEvent(new Event('popstate'));
+              }}
               className="btn-secondary"
               style={{ justifyContent: 'space-between', borderColor: detectedOS.includes('macOS') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
             >
@@ -220,6 +240,11 @@ export const DownloadModal: React.FC<{ isOpen: boolean; onClose: () => void; det
               href={versionInfo.downloadUrlDeb}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                onClose();
+                window.history.pushState({}, '', '/thank-you');
+                window.dispatchEvent(new Event('popstate'));
+              }}
               className="btn-secondary"
               style={{ justifyContent: 'space-between', borderColor: detectedOS.includes('Linux') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
             >

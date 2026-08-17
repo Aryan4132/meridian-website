@@ -73,11 +73,19 @@ export const Hero: React.FC<HeroProps> = ({ detectedOS, isMobile, onDownloadClic
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownloadPress = () => {
+    setIsDownloading(true);
+    onDownloadClick();
+    setTimeout(() => setIsDownloading(false), 1000);
+  };
+
   return (
     <section
       style={{
-        paddingTop: '160px',
-        paddingBottom: '90px',
+        paddingTop: '130px',
+        paddingBottom: '70px',
         position: 'relative',
         zIndex: 1,
         overflow: 'hidden'
@@ -89,7 +97,7 @@ export const Hero: React.FC<HeroProps> = ({ detectedOS, isMobile, onDownloadClic
           {/* 3D Holographic AI Core & Emblem Logo */}
           <div style={{ marginBottom: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
             <CyberCore3D
-              height={280}
+              height={260}
               accentColor={selectedModel.accent}
               modelId={selectedModel.id}
               vramText={selectedModel.vram}
@@ -115,9 +123,9 @@ export const Hero: React.FC<HeroProps> = ({ detectedOS, isMobile, onDownloadClic
           <h1
             className="hero-anim-item"
             style={{
-              fontSize: 'clamp(2.5rem, 5vw, 4.2rem)',
+              fontSize: 'clamp(2.3rem, 5vw, 4rem)',
               lineHeight: 1.1,
-              marginBottom: '20px',
+              marginBottom: '18px',
               fontWeight: 800
             }}
           >
@@ -129,11 +137,11 @@ export const Hero: React.FC<HeroProps> = ({ detectedOS, isMobile, onDownloadClic
           <p
             className="hero-anim-item"
             style={{
-              fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
+              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
               color: 'var(--text-muted)',
-              marginBottom: '32px',
+              marginBottom: '28px',
               maxWidth: '740px',
-              margin: '0 auto 36px auto',
+              margin: '0 auto 32px auto',
               lineHeight: 1.6
             }}
           >
@@ -153,9 +161,18 @@ export const Hero: React.FC<HeroProps> = ({ detectedOS, isMobile, onDownloadClic
               marginBottom: '28px'
             }}
           >
-            <button onClick={onDownloadClick} className="btn-primary" style={{ padding: '16px 32px', fontSize: '1.05rem' }}>
-              <Download size={20} />
-              <span>Download Desktop App</span>
+            <button
+              onClick={handleDownloadPress}
+              className="btn-primary"
+              disabled={isDownloading}
+              style={{ padding: '16px 32px', fontSize: '1.05rem', opacity: isDownloading ? 0.8 : 1 }}
+            >
+              {isDownloading ? (
+                <div className="spinner" style={{ width: 20, height: 20, border: '2px solid rgba(0,0,0,0.2)', borderTopColor: '#000', borderRadius: '50%', animation: 'spin 0.6s linear infinite' }} />
+              ) : (
+                <Download size={20} />
+              )}
+              <span>{isDownloading ? 'Preparing Build...' : 'Download Desktop App'}</span>
             </button>
 
             <a

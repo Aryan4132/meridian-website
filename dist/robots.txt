@@ -1,0 +1,5 @@
+# Meridian-X Sovereign Desktop AI Agent Robots Specification
+User-agent: *
+Allow: /
+
+Sitemap: https://meridian-x.ai/sitemap.xml
