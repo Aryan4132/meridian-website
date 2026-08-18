@@ -18,6 +18,12 @@ const SEO_MAP: Record<string, PageSeoConfig> = {
     canonicalUrl: 'https://meridian-x.ai/privacy',
     ogType: 'article'
   },
+  '/docs': {
+    title: 'Documentation & Server Hosting — Meridian-X Sovereign AI',
+    description: 'Complete Meridian-X documentation, installation guides, host on server tutorial (Docker, Caddy, Nginx SSL), architecture specs, hotkey shortcuts, and MCP server setup.',
+    canonicalUrl: 'https://meridian-x.ai/docs',
+    ogType: 'website'
+  },
   '/terms': {
     title: 'Terms of Service — Meridian-X Open-Source Sovereign AI',
     description: 'Terms of Service and End-User License Agreement for Meridian-X sovereign desktop application and local tool execution framework.',

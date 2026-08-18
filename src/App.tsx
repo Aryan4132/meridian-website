@@ -13,6 +13,7 @@ import { NotFound } from './components/NotFound';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { TermsOfService } from './components/TermsOfService';
 import { ThankYou } from './components/ThankYou';
+import { DocumentationPage } from './components/DocumentationPage';
 import { CookieBanner } from './components/CookieBanner';
 import { StickyMobileCTA } from './components/StickyMobileCTA';
 import { updatePageSeo } from './utils/seo';
@@ -105,6 +106,10 @@ export const App: React.FC = () => {
 
       case '/terms':
         return <TermsOfService onNavigateHome={() => navigateTo('/')} />;
+
+      case '/docs':
+      case '/documentation':
+        return <DocumentationPage onNavigateHome={() => navigateTo('/')} />;
 
       case '/thank-you':
         return <ThankYou onNavigateHome={() => navigateTo('/')} detectedOS={detectedOS} />;

@@ -67,6 +67,17 @@ export const Footer: React.FC<FooterProps> = ({ onDownloadClick, detectedOS }) =
             <a href="#features" style={footerLinkStyle}>System Features</a>
             <a href="#architecture" style={footerLinkStyle}>Tauri v2 & Architecture</a>
             <a href="#mcp" style={footerLinkStyle}>MCP Marketplace</a>
+            <a
+              href="/docs"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/docs');
+                window.dispatchEvent(new Event('popstate'));
+              }}
+              style={footerLinkStyle}
+            >
+              Documentation & Server Setup
+            </a>
           </div>
 
           {/* Col 3: Platforms & Download */}
@@ -94,7 +105,8 @@ export const Footer: React.FC<FooterProps> = ({ onDownloadClick, detectedOS }) =
             <a href="https://github.com/Aryan4132/Meridian-X" target="_blank" rel="noopener noreferrer" style={footerLinkStyle}>
               <Github size={14} /> GitHub Repository
             </a>
-            <div style={{ display: 'flex', gap: '12px', marginTop: '6px' }}>
+            <div style={{ display: 'flex', gap: '12px', marginTop: '6px', flexWrap: 'wrap' }}>
+              <a href="/docs" onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', '/docs'); window.dispatchEvent(new Event('popstate')); }} style={footerLinkStyle}>Docs</a>
               <a href="/privacy" onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', '/privacy'); window.dispatchEvent(new Event('popstate')); }} style={footerLinkStyle}>Privacy Policy</a>
               <a href="/terms" onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', '/terms'); window.dispatchEvent(new Event('popstate')); }} style={footerLinkStyle}>Terms</a>
             </div>

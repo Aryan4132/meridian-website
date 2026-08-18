@@ -42,11 +42,16 @@ Update `meridian_website` to reflect the latest release of **Meridian-X (v0.4.0)
    - ReAct loop trace: Reason -> Schema Check -> Heal -> Speculative Concurrency Router (Tier 0 / Tier 1) -> Supertonic TTS output
    - HUD Preview showing Hotkeys (`Alt+M`, `Alt+Shift+M`, `Alt+V`), Mascot state, Clipboard surveillance, and Distraction shield status
 
+5. **Documentation Page (`/docs`)**:
+   - Interactive docs dashboard with search filter & category sidebar.
+   - Core topics: Quickstart & Setup, Host on Server (converted from `SELF_HOSTING.md`), Core Architecture, Hotkey & HUD Reference, MCP Integration, and Local Model Configuration.
+   - Code blocks with syntax formatting and copy-to-clipboard functionality.
+
 ## Boundaries
 - **Always do**: Preserve full TypeScript type safety, ensure responsive UI, test build (`npm run build`).
 - **Ask first**: Major component removals or structure changes.
 - **Never do**: Truncate code, insert placeholdes, or hardcode broken paths.
 
 ## Success Criteria
-- Website reflects all v0.4.0 Meridian-X features, setup instructions, metrics, architecture, and themes.
+- Website reflects all v0.4.0 Meridian-X features, setup instructions, metrics, architecture, themes, and `/docs` documentation suite.
 - Build (`npm run build`) completes with zero errors.

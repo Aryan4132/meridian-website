@@ -113,12 +113,22 @@ export const Header: React.FC<HeaderProps> = ({ onDownloadClick, detectedOS }) =
           <a href="#features" className="nav-item-link">
             Features
           </a>
-
           <a href="#architecture" className="nav-item-link">
             Architecture
           </a>
           <a href="#mcp" className="nav-item-link">
             MCP Marketplace
+          </a>
+          <a
+            href="/docs"
+            className="nav-item-link"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState({}, '', '/docs');
+              window.dispatchEvent(new Event('popstate'));
+            }}
+          >
+            Docs
           </a>
         </nav>
 
@@ -175,6 +185,18 @@ export const Header: React.FC<HeaderProps> = ({ onDownloadClick, detectedOS }) =
           </a>
           <a href="#mcp" onClick={() => setMobileMenuOpen(false)} style={mobileNavLinkStyle}>
             MCP Marketplace
+          </a>
+          <a
+            href="/docs"
+            onClick={(e) => {
+              e.preventDefault();
+              setMobileMenuOpen(false);
+              window.history.pushState({}, '', '/docs');
+              window.dispatchEvent(new Event('popstate'));
+            }}
+            style={mobileNavLinkStyle}
+          >
+            Documentation
           </a>
         </div>
       )}
