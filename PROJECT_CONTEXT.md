@@ -320,3 +320,24 @@ Meridian-X/
     │       ├── ServerConnectionModal.tsx # Multi-Backend URL Switcher
     │       └── CommandPalette.tsx        # Global Action Launcher
 ```
+
+---
+
+## 7. MACOS GATEKEEPER, FREE CODE SIGNING & INSTALLATION SETUP
+
+### Free macOS Code Signing (Student & Open-Source)
+- **Tauri Config**: Configured with free ad-hoc signing (`"signingIdentity": "-"`) in `meridian_frontend/src-tauri/tauri.conf.json`.
+- **Sidecar Permissions**: `build_standalone.py` and `src/lib.rs` set `0o755` executable permissions (`chmod +x`) on resource binaries automatically.
+- **STDIO Logging**: `src/lib.rs` redirects sidecar stdout/stderr to `api_stdout.log` / `api_stderr.log` inside `~/Library/Application Support/com.meridian.x/Meridian/` to prevent `BrokenPipeError` crashes when launched from macOS Finder.
+
+### Gatekeeper Quarantine Fix (Unsigned Builds)
+- **Manual Command**:
+  ```bash
+  sudo xattr -r -d com.apple.quarantine /Applications/meridian-x.app
+  ```
+- **Automated Installer (`install.sh`)**:
+  Applies free ad-hoc code signing (`codesign --force --deep --sign -`) and strips quarantine attributes automatically upon run:
+  ```bash
+  curl -fsSL https://raw.githubusercontent.com/Aryan4132/Meridian-X/main/install.sh | bash
+  ```
+

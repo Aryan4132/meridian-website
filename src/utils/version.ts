@@ -12,7 +12,15 @@ export interface VersionInfo {
   publishedAt: string;
   isLive: boolean;
   isLoading: boolean;
+  checksums: Record<string, string>;
 }
+
+const DEFAULT_CHECKSUMS: Record<string, string> = {
+  Windows: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+  macOS: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+  Linux: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+  default: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+};
 
 const DEFAULT_VERSION: VersionInfo = {
   version: '0.4.0',
@@ -25,7 +33,8 @@ const DEFAULT_VERSION: VersionInfo = {
   releaseNotesUrl: 'https://github.com/Aryan4132/Meridian-X/releases/latest',
   publishedAt: new Date().toISOString(),
   isLive: false,
-  isLoading: true
+  isLoading: true,
+  checksums: DEFAULT_CHECKSUMS
 };
 
 let cachedVersionInfo: VersionInfo | null = null;
@@ -56,6 +65,7 @@ export function useMeridianVersion(): VersionInfo {
           let dmgUrl = DEFAULT_VERSION.downloadUrlDmg;
           let debUrl = DEFAULT_VERSION.downloadUrlDeb;
           let appImageUrl = DEFAULT_VERSION.downloadUrlAppImage;
+          const fetchedChecksums: Record<string, string> = { ...DEFAULT_CHECKSUMS };
 
           if (Array.isArray(data.assets)) {
             const exeAsset = data.assets.find((a: any) => a.name?.endsWith('.exe'));
@@ -71,6 +81,26 @@ export function useMeridianVersion(): VersionInfo {
             if (appImageAsset?.browser_download_url) appImageUrl = appImageAsset.browser_download_url;
           }
 
+          // Parse release body for SHA256 hashes if listed
+          if (typeof data.body === 'string') {
+            const lines = data.body.split('\n');
+            lines.forEach((line: string) => {
+              const hashMatch = line.match(/([a-fA-F0-9]{64})/);
+              if (hashMatch) {
+                const hash = hashMatch[1].toLowerCase();
+                if (line.toLowerCase().includes('.exe') || line.toLowerCase().includes('windows')) {
+                  fetchedChecksums['Windows'] = hash;
+                } else if (line.toLowerCase().includes('.dmg') || line.toLowerCase().includes('mac')) {
+                  fetchedChecksums['macOS'] = hash;
+                } else if (line.toLowerCase().includes('.deb') || line.toLowerCase().includes('linux')) {
+                  fetchedChecksums['Linux'] = hash;
+                } else {
+                  fetchedChecksums['default'] = hash;
+                }
+              }
+            });
+          }
+
           const liveInfo: VersionInfo = {
             version: cleanVersion,
             tagName: tag,
@@ -82,7 +112,8 @@ export function useMeridianVersion(): VersionInfo {
             releaseNotesUrl: data.html_url || DEFAULT_VERSION.releaseNotesUrl,
             publishedAt: data.published_at || DEFAULT_VERSION.publishedAt,
             isLive: true,
-            isLoading: false
+            isLoading: false,
+            checksums: fetchedChecksums
           };
 
           cachedVersionInfo = liveInfo;

@@ -59,7 +59,24 @@ export const DOCS_DATA: DocCategory[] = [
           language: 'bash',
           filename: 'Terminal (Bash / Zsh)',
           code: 'curl -fsSL https://raw.githubusercontent.com/Aryan4132/Meridian-X/main/install.sh | bash'
-        }
+        },
+        notes: [
+          'Automatically downloads standalone binary, applies ad-hoc code signature, and strips quarantine flags.'
+        ]
+      },
+      {
+        id: 'macos-gatekeeper-fix',
+        title: 'macOS Gatekeeper Quarantine Fix',
+        description: 'Because Meridian-X uses free ad-hoc code signing for open-source releases, macOS Gatekeeper may present a prompt saying "meridian-x.app is damaged and can\'t be opened". Remove the quarantine attribute via Terminal:',
+        codeSnippet: {
+          language: 'bash',
+          filename: 'macOS Terminal',
+          code: 'sudo xattr -r -d com.apple.quarantine /Applications/meridian-x.app'
+        },
+        notes: [
+          'Drag meridian-x.app into /Applications before running this command.',
+          'Fixes unsigned developer warning instantly without requiring Apple Developer paid Certificate.'
+        ]
       },
       {
         id: 'system-requirements',

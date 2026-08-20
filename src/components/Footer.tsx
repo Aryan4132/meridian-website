@@ -239,11 +239,11 @@ export const DownloadModal: React.FC<{ isOpen: boolean; onClose: () => void; det
                 window.dispatchEvent(new Event('popstate'));
               }}
               className="btn-secondary"
-              style={{ justifyContent: 'space-between', borderColor: detectedOS.includes('macOS') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
+              style={{ justifyContent: 'space-between', borderColor: detectedOS.includes('macOS') || detectedOS.includes('Mac') ? 'var(--cyan-primary)' : 'var(--border-glass)' }}
             >
               <div>
                 <strong>🍎 macOS Installer (.dmg)</strong>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)' }}>Universal / Apple Silicon & Intel</div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)' }}>Universal / Apple Silicon & Intel • Includes Gatekeeper Guide</div>
               </div>
               <Download size={16} color="var(--cyan-primary)" />
             </a>

@@ -36,6 +36,10 @@ const FAQS: FaqItem[] = [
     answer: 'Meridian-X provides sub-10ms global shortcuts: `Alt + M` toggles the main desktop workspace window, `Alt + Shift + M` toggles the compact 3D mascot floating island HUD, and `Alt + V` triggers instant push-to-talk voice dictation.'
   },
   {
+    question: 'Why does macOS say Meridian-X is "damaged and can\'t be opened"?',
+    answer: 'Meridian-X is a 100% free open-source desktop app that uses ad-hoc code signing. Apple Gatekeeper blocks unsigned open-source binaries by default. To fix this instantly, drag meridian-x.app into /Applications, open Terminal, and run: `sudo xattr -r -d com.apple.quarantine /Applications/meridian-x.app`. Alternatively, run our 1-line installer: `curl -fsSL https://raw.githubusercontent.com/Aryan4132/Meridian-X/main/install.sh | bash`.'
+  },
+  {
     question: 'How does 100% offline privacy and AES-GCM Vault work?',
     answer: 'Meridian-X embeds local Ollama runtime and Turbovec vector storage. Credentials are encrypted in local vault (vault.py) via AES-256-GCM with machine-bound HMAC-SHA256 passphrase derivation (hostname + username + salt). Zero code, API keys, or prompt telemetry ever leave your device.'
   }
